@@ -1,17 +1,19 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ]
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"strict": true,
+		"baseUrl": "./src",
+		"paths": {
+			"@atoms": ["components/atoms/index.ts"],
+			"@molecules": ["components/molecules/index.ts"],
+			"@organisms": ["components/organisms/index.ts"],
+			"@hooks": ["hooks/index.ts"],
+			"@interfaces": ["interfaces/index.ts"],
+			"@models": ["models/index.ts"],
+			"@utils": ["utils/index.ts"],
+			"@store": ["store/index.ts"],
+			"@queries": ["store/queries/index.ts"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }

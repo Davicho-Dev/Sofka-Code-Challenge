@@ -1,39 +1,67 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+
+import { Stack, SplashScreen } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { Provider } from 'react-redux';
+import {
+	useFonts,
+	Inter_400Regular,
+	Inter_500Medium,
+	Inter_600SemiBold,
+	Inter_700Bold,
+} from '@expo-google-fonts/inter';
+
+import { Logo } from '@molecules';
+import { store } from '@store';
+
 import 'react-native-reanimated';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+const RootLayout = () => {
+	const [loaded, error] = useFonts({
+		inter_400: Inter_400Regular,
+		inter_500: Inter_500Medium,
+		inter_600: Inter_600SemiBold,
+		inter_700: Inter_700Bold,
+	});
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+	useEffect(() => {
+		if (loaded || error) {
+			SplashScreen.hideAsync();
+		}
+	}, [loaded, error]);
 
-  if (!loaded) {
-    return null;
-  }
+	if (!loaded || error) return null;
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
-}
+	return (
+		<Provider store={store}>
+			<Stack
+				screenOptions={{
+					headerTitle: () => <Logo />,
+					headerTitleAlign: 'center',
+					contentStyle: {
+						padding: 24,
+						backgroundColor: 'white',
+					},
+				}}
+			>
+				<Stack.Screen
+					name='index'
+					options={{
+						title: 'Home',
+					}}
+				/>
+				<Stack.Screen
+					name='product/[id]/index'
+					options={{
+						title: 'Product',
+					}}
+				/>
+			</Stack>
+			<StatusBar style='auto' />
+		</Provider>
+	);
+};
+
+export default RootLayout;
