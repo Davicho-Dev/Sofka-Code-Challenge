@@ -8,5 +8,5 @@ import { styles } from './FormInputSearch.styles';
 import { colors } from '@utils';
 
 export const FormInputSearch: FC<IFormInputSearchProps> = props => {
-	return <TextInput style={styles} placeholderTextColor={colors.darkGray} {...props} />;
+	return <TextInput testID='input-search' style={styles} placeholderTextColor={colors.darkGray} {...props} />;
 };
