@@ -3,19 +3,33 @@ import { render, screen } from '@testing-library/react-native';
 import { FormInputSearch } from '@atoms';
 
 describe('<FormInputSearch>', () => {
-	it('should render correctly', () => {
-		const { debug } = render(
+	beforeEach(() => {
+		render(
 			<FormInputSearch
 				onChangeText={function (text: string): void {
 					throw new Error('Function not implemented.');
 				}}
-				placeholder={''}
-				value={''}
+				placeholder={'Search'}
+				value={'Hello'}
 			/>
 		);
+	});
 
-		const item = screen.getByTestId('input-search');
+	it('should render correctly', () => {
+		const inputSearch = screen.getByTestId('input-search');
 
-		expect(item).toBeTruthy();
+		expect(inputSearch).toBeOnTheScreen();
+	});
+
+	it('should render correctly with placeholder', () => {
+		const inputSearch = screen.getByPlaceholderText('Search');
+
+		expect(inputSearch).toBeOnTheScreen();
+	});
+
+	it('should render correctly with value', () => {
+		const inputSearch = screen.getByDisplayValue('Hello');
+
+		expect(inputSearch).toBeOnTheScreen();
 	});
 });
