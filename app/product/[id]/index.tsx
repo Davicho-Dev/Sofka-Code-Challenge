@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -9,10 +9,8 @@ import { Error, Loading } from '@molecules';
 import { useDeleteProductMutation, useGetProductQuery } from '@queries';
 import { ConfirmationDialog } from '@organisms';
 
-const ProductItemPage = () => {
+const ProductDetailsPage = () => {
 	const [isDeleting, setIsDeleting] = useState(false);
-
-	const router = useRouter();
 
 	const { id } = useLocalSearchParams();
 
@@ -77,7 +75,7 @@ const ProductItemPage = () => {
 				</View>
 
 				<View style={{ gap: 8 }}>
-					<LinkSolid href={`product/${productId}/edit`} variant='third'>
+					<LinkSolid href={`/product/${productId}/edit`} variant='third'>
 						Editar
 					</LinkSolid>
 					<ButtonSolid onPress={() => setIsDeleting(true)} variant='danger'>
@@ -106,4 +104,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ProductItemPage;
+export default ProductDetailsPage;

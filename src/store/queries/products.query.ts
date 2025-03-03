@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { convertToSlashedDate } from '@utils';
 
-import type { IProductItemProps, IProductProps } from '@interfaces';
+import type { IProductItemProps, IProductsProps } from '@interfaces';
 
 const baseUrl = process.env.EXPO_PUBLIC_API_URL;
 
@@ -36,7 +36,7 @@ export const productsApi = createApi({
 			},
 			providesTags: ['Product'],
 		}),
-		getProducts: builder.query<IProductProps, string>({
+		getProducts: builder.query<IProductsProps, string>({
 			query: () => 'products',
 			providesTags: ['Products'],
 		}),

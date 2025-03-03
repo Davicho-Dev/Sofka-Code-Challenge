@@ -8,9 +8,10 @@ import { colors } from '@utils';
 
 import type { IProductItemProps } from '@interfaces';
 
-export const ProductItem: FC<IProductItemProps> = ({ id, name }) => {
+export const ProductItem: FC<Pick<IProductItemProps, 'id' | 'name'>> = ({ id, name }) => {
 	return (
 		<Link
+			testID='product-item'
 			href={{
 				pathname: '/product/[id]',
 				params: {
