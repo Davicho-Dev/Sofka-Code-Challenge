@@ -26,8 +26,6 @@ export const ProductForm: FC<IProductFormProps> = ({ onSubmit, onReset }) => {
 		});
 	};
 
-	console.log({ releaseDate });
-
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

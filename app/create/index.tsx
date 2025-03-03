@@ -37,8 +37,6 @@ const CreatePage = () => {
 		if (isSuccess) router.replace('/');
 	}, [isSuccess]);
 
-	console.log({ isLoading, isSuccess });
-
 	return (
 		<View style={{ gap: 24, flex: 1 }}>
 			<Text style={{ fontFamily: 'inter_600', fontSize: 28 }}>Formulario de Registro</Text>
