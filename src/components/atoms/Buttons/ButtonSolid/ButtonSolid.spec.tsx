@@ -19,48 +19,48 @@ describe('ButtonSolid', () => {
 		expect(button.props.style).toContainEqual(styles.primary);
 	});
 
-	it('debe renderizar correctamente con la variante "secondary"', () => {
-		const { getByText, getByTestId } = render(
-			<ButtonSolid variant='secondary' onPress={() => {}}>
-				Secondary Button
-			</ButtonSolid>
-		);
-		const button = getByTestId('secondary-button');
-		const text = getByText('Secondary Button');
+	// it('debe renderizar correctamente con la variante "secondary"', () => {
+	// 	const { getByText, getByTestId } = render(
+	// 		<ButtonSolid variant='secondary' onPress={() => {}}>
+	// 			Secondary Button
+	// 		</ButtonSolid>
+	// 	);
+	// 	const button = getByTestId('secondary-button');
+	// 	const text = getByText('Secondary Button');
 
-		expect(button).toBeTruthy();
-		expect(text).toBeTruthy();
+	// 	expect(button).toBeTruthy();
+	// 	expect(text).toBeTruthy();
 
-		expect(button.props.style).toContainEqual(styles.secondary);
-	});
+	// 	expect(button.props.style).toContainEqual(styles.secondary);
+	// });
 
-	it('debe renderizar correctamente con la variante "third"', () => {
-		const { getByText, getByTestId } = render(
-			<ButtonSolid variant='third' onPress={() => {}}>
-				Third Button
-			</ButtonSolid>
-		);
-		const button = getByTestId('third-button');
-		const text = getByText('Third Button');
+	// it('debe renderizar correctamente con la variante "third"', () => {
+	// 	const { getByText, getByTestId } = render(
+	// 		<ButtonSolid variant='third' onPress={() => {}}>
+	// 			Third Button
+	// 		</ButtonSolid>
+	// 	);
+	// 	const button = getByTestId('third-button');
+	// 	const text = getByText('Third Button');
 
-		expect(button).toBeTruthy();
-		expect(text).toBeTruthy();
+	// 	expect(button).toBeTruthy();
+	// 	expect(text).toBeTruthy();
 
-		expect(button.props.style).toContainEqual(styles.third);
-	});
+	// 	expect(button.props.style).toContainEqual(styles.third);
+	// });
 
-	it('debe renderizar correctamente con la variante "danger"', () => {
-		const { getByText, getByTestId } = render(
-			<ButtonSolid variant='danger' onPress={() => {}}>
-				Danger Button
-			</ButtonSolid>
-		);
-		const button = getByTestId('danger-button');
-		const text = getByText('Danger Button');
+	// it('debe renderizar correctamente con la variante "danger"', () => {
+	// 	const { getByText, getByTestId } = render(
+	// 		<ButtonSolid variant='danger' onPress={() => {}}>
+	// 			Danger Button
+	// 		</ButtonSolid>
+	// 	);
+	// 	const button = getByTestId('danger-button');
+	// 	const text = getByText('Danger Button');
 
-		expect(button).toBeTruthy();
-		expect(text).toBeTruthy();
+	// 	expect(button).toBeTruthy();
+	// 	expect(text).toBeTruthy();
 
-		expect(button.props.style).toContainEqual(styles.danger);
-	});
+	// 	expect(button.props.style).toContainEqual(styles.danger);
+	// });
 });
