@@ -1,7 +1,7 @@
 import type { IProductItemProps } from '@interfaces';
 
-interface IProductProps {
+interface IProductsProps {
 	data: IProductItemProps[];
 }
 
-export type { IProductProps };
+export type { IProductsProps };
