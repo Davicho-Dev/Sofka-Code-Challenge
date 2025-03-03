@@ -1,9 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react-native';
 
-import { ButtonSolid } from './ButtonSolid';
+import { ButtonSolid } from '@atoms';
+
 import { styles } from './ButtonSolid.styles';
 
-describe('ButtonSolid', () => {
+describe('<ButtonSolid/>', () => {
 	it('Must render correctly with the "primary" variant.', () => {
 		render(
 			<ButtonSolid variant='primary' onPress={() => {}}>

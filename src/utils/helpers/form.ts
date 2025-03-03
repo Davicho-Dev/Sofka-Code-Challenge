@@ -24,8 +24,6 @@ const isFutureDate = (dateString: string): boolean => {
 	return date.getTime() >= today.getTime();
 };
 
-interface I {}
-
 const isOneYearLater = (date1: string, date2: string): boolean => {
 	if (!isValidDateFormat(date1) || !isValidDateFormat(date2)) {
 		return false;
