@@ -9,6 +9,7 @@ import { ProductForm } from '@organisms';
 import { useCreateProductMutation } from '@queries';
 
 import type { IProductItemProps } from '@interfaces';
+import { convertToDashedDate } from '@utils';
 
 const CreatePage = () => {
 	const router = useRouter();
@@ -17,13 +18,26 @@ const CreatePage = () => {
 
 	const [createProduct, { isLoading, isSuccess }] = useCreateProductMutation();
 
-	const hdlSubmit = (data: IProductItemProps) => createProduct(data);
+	const hdlSubmit = (data: IProductItemProps) => {
+		const { date_release, date_revision } = data;
+
+		const formattedDateRelease = convertToDashedDate(date_release);
+		const formattedDateRevision = convertToDashedDate(date_revision);
+
+		createProduct({
+			...data,
+			date_release: formattedDateRelease,
+			date_revision: formattedDateRevision,
+		});
+	};
 
 	const hdlReset = () => form.reset();
 
 	useEffect(() => {
 		if (isSuccess) router.replace('/');
 	}, [isSuccess]);
+
+	console.log({ isLoading, isSuccess });
 
 	return (
 		<View style={{ gap: 24, flex: 1 }}>

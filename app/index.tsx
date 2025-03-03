@@ -10,7 +10,9 @@ import { useGetProductsQuery } from '@queries';
 const HomePage = () => {
 	const [inputValue, setInputValue] = useState<string>('');
 
-	const { data, isLoading, isError, originalArgs, endpointName } = useGetProductsQuery('');
+	const { data, isLoading, isError } = useGetProductsQuery('');
+	const filteredProducts =
+		data?.data.filter(product => product.name.toLowerCase().includes(inputValue.toLowerCase())) ?? [];
 
 	if (isLoading) return <Loading />;
 
@@ -21,9 +23,9 @@ const HomePage = () => {
 			<FormInputSearch value={inputValue} onChangeText={setInputValue} placeholder={'Search...'} />
 
 			<View style={{ flexGrow: 1, gap: 12 }}>
-				<ProductCount count={data?.data?.length ?? 0} />
+				<ProductCount count={filteredProducts.length ?? 0} />
 
-				<ProductList products={data?.data} />
+				<ProductList products={filteredProducts} />
 			</View>
 
 			<LinkSolid href='/create'>

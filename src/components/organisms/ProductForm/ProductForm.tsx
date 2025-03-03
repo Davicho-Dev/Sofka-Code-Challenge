@@ -5,7 +5,7 @@ import { FormSubmitHandler, SubmitHandler, useFormContext } from 'react-hook-for
 
 import { ButtonSolid, FormField } from '@atoms';
 import { FormInput } from '@molecules';
-import { addOneYear, checkDate, colors, isFutureDate, isValidDateFormat } from '@utils';
+import { addOneYear, checkDate, colors, exists, isFutureDate, isValidDateFormat } from '@utils';
 
 import type { IProductFormProps, IProductItemProps } from './ProductForm.interfaces';
 
@@ -26,13 +26,15 @@ export const ProductForm: FC<IProductFormProps> = ({ onSubmit, onReset }) => {
 		});
 	};
 
+	console.log({ releaseDate });
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 			keyboardVerticalOffset={130}
 			style={{ flex: 1 }}
 		>
-			<ScrollView testID='product-form' contentContainerStyle={{ flexGrow: 1, columnGap: 24 }}>
+			<ScrollView testID='product-form' contentContainerStyle={{ flexGrow: 1, rowGap: 24 }}>
 				<FormInput
 					label='ID'
 					name='id'
@@ -56,6 +58,10 @@ export const ProductForm: FC<IProductFormProps> = ({ onSubmit, onReset }) => {
 						validate: {
 							validId: async id => {
 								if (id === defaultValues?.id) return true;
+
+								const alreadyExists = await exists(id);
+
+								if (alreadyExists) return "ID ya existe";
 
 								return true;
 							},
@@ -166,7 +172,7 @@ export const ProductForm: FC<IProductFormProps> = ({ onSubmit, onReset }) => {
 					errorMessage={!checkDate(releaseDate) ? 'Fecha de Liberación inválida' : ''}
 				/>
 
-				<View style={{ rowGap: 8 }}>
+				<View style={{ rowGap: 8  }}>
 					<ButtonSolid onPress={handleSubmit(hdlSubmit)}>Enviar</ButtonSolid>
 					<ButtonSolid onPress={onReset} variant='secondary'>
 						Reiniciar

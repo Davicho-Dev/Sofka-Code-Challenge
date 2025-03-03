@@ -18,7 +18,7 @@ const EditProductPage: FC = () => {
 	if (isLoading) return <Loading />;
 
 	const hdlEdit = () => {
-		router.navigate(`/product/${productId}/edit`);
+		router.navigate(`/product/${productId}`);
 	};
 
 	return (

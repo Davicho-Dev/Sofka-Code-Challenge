@@ -10,7 +10,12 @@ export const ButtonSolid = forwardRef<View, IButtonSolidProps>(
 	({ children, variant = 'primary', onPress }: IButtonSolidProps, ref) => {
 		if (variant === 'secondary') {
 			return (
-				<Pressable ref={ref} onPress={onPress} style={[styles.button, styles.secondary]} testID='secondart-button'>
+				<Pressable
+					ref={ref}
+					onPress={onPress}
+					style={[styles.button, styles.secondary]}
+					testID='secondart-button'
+				>
 					<Text style={[styles.title, styles.title_secondary]}>{children}</Text>
 				</Pressable>
 			);

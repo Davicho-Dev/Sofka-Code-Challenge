@@ -19,7 +19,7 @@ const ProductItemPage = () => {
 	const productId = typeof id === 'string' ? id : id[0];
 
 	const { data, isLoading, isError } = useGetProductQuery({ id: productId });
-	const [deleteProduct, { isSuccess }] = useDeleteProductMutation();
+	const [deleteProduct] = useDeleteProductMutation();
 
 	const hdlConfirmDeletion = () => {
 		deleteProduct({ id: productId });
@@ -28,12 +28,6 @@ const ProductItemPage = () => {
 	if (isLoading) return <Loading />;
 
 	if (isError) return <Error />;
-
-	useEffect(() => {
-		if (isSuccess && data) {
-			router.navigate('/');
-		}
-	}, [isSuccess, data]);
 
 	return (
 		<>
