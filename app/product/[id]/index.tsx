@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -10,6 +10,7 @@ import { useDeleteProductMutation, useGetProductQuery } from '@queries';
 import { ConfirmationDialog } from '@organisms';
 
 const ProductDetailsPage = () => {
+	const router = useRouter();
 	const [isDeleting, setIsDeleting] = useState(false);
 
 	const { id } = useLocalSearchParams();
@@ -17,11 +18,15 @@ const ProductDetailsPage = () => {
 	const productId = typeof id === 'string' ? id : id[0];
 
 	const { data, isLoading, isError } = useGetProductQuery({ id: productId });
-	const [deleteProduct] = useDeleteProductMutation();
+	const [deleteProduct, { isSuccess }] = useDeleteProductMutation();
 
 	const hdlConfirmDeletion = () => {
 		deleteProduct({ id: productId });
 	};
+
+	useEffect(() => {
+		if (isSuccess) router.replace('/');
+	}, [isSuccess]);
 
 	if (isLoading) return <Loading />;
 

@@ -15,11 +15,9 @@ const EditProductPage: FC = () => {
 
 	const { data, isLoading } = useGetProductQuery({ id: productId });
 
-	if (isLoading) return <Loading />;
+	const hdlEdit = () => router.navigate(`/product/${productId}`);
 
-	const hdlEdit = () => {
-		router.navigate(`/product/${productId}`);
-	};
+	if (isLoading) return <Loading />;
 
 	return (
 		<View style={{ gap: 24, flex: 1 }}>
