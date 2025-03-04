@@ -11,7 +11,6 @@ import { convertToDashedDate } from '@utils';
 import { useRouter } from 'expo-router';
 
 export const EditProductForm: FC<IEditProductFormProps> = ({ defaultValues, onEditSuccess }) => {
-	const router = useRouter();
 	const form = useForm<IProductItemProps>({ defaultValues });
 
 	const [editProduct, { isSuccess }] = useUpdateProductMutation();
@@ -34,9 +33,7 @@ export const EditProductForm: FC<IEditProductFormProps> = ({ defaultValues, onEd
 	};
 
 	useEffect(() => {
-		if (isSuccess) {
-			router.navigate(`/product/${defaultValues.id}`);
-		}
+		if (isSuccess) onEditSuccess();
 	}, [isSuccess]);
 
 	return (
